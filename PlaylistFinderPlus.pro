@@ -14,7 +14,9 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
-    scanner/scanner.h
+    model/ipaddress.h \
+    scanner/scanner.h \
+    scanner/util.h
 
 FORMS += \
     mainwindow.ui
