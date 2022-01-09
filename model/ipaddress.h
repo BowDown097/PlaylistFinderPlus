@@ -7,17 +7,10 @@
 class IPAddress
 {
     QVector<short> position;
-    QStringView positionAsString;
 
-    void init(const short& pos1, const short& pos2, const short& pos3, const short& pos4)
+    void init(short pos1, short pos2, short pos3, short pos4)
     {
-        position.append({ pos1, pos2, pos3, pos4});
-        positionAsString = asString();
-    }
-
-    QStringView asString()
-    {
-        return QStringLiteral("%1%2%3%4").arg(QString::number(position[0]), QString::number(position[1]), QString::number(position[2]), QString::number(position[3]));
+        position.append({pos1, pos2, pos3, pos4});
     }
 
     void addAtPosition(short index)
@@ -27,7 +20,6 @@ class IPAddress
         if (position[index] != 255)
         {
             position[index]++;
-            positionAsString = asString();
             return;
         }
 
@@ -35,16 +27,16 @@ class IPAddress
         addAtPosition(--index);
     }
 public:
-    IPAddress(const short& pos1, const short& pos2, const short& pos3, const short& pos4)
+    IPAddress(short pos1, short pos2, short pos3, short pos4)
     {
         init(pos1, pos2, pos3, pos4);
     }
 
-    IPAddress(QStringView ip)
+    IPAddress(const QString& ip)
     {
         QVector<short> vec;
-        foreach (QStringView b, ip.split('.'))
-            vec.append(b.toShort());
+        foreach (QStringRef s, ip.splitRef('.'))
+            vec.append(s.toShort());
         init(vec[0], vec[1], vec[2], vec[3]);
     }
 
@@ -55,9 +47,10 @@ public:
         return address;
     }
 
-    friend bool operator==(const IPAddress& l, const IPAddress& r) { return l.positionAsString == r.positionAsString; }
+    operator QString() const { return QString::asprintf("%hi%hi%hi%hi", position[0], position[1], position[2], position[3]); }
+    friend bool operator==(const IPAddress& l, const IPAddress& r) { return QString(l) == QString(r); }
     friend bool operator!=(const IPAddress& l, const IPAddress& r) { return !(l == r); }
-    friend bool operator<(const IPAddress& l, const IPAddress& r) { return l.positionAsString.compare(r.positionAsString) < 0; }
+    friend bool operator<(const IPAddress& l, const IPAddress& r) { return QString(l).compare(QString(r)) < 0; }
     friend bool operator>(const IPAddress& l, const IPAddress& r) { return r < l; }
     friend bool operator<=(const IPAddress& l, const IPAddress& r) { return !(l > r); }
 };

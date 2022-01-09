@@ -15,8 +15,15 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     model/ipaddress.h \
+    model/ipportkey.h \
+    playlist/playlistparser.h \
+    playlist/whois.h \
+    scanner/httpheaders.h \
+    scanner/ipportkey.h \
     scanner/scanner.h \
-    scanner/util.h
+    scanner/util.h \
+    ui/scanresult.h \
+    ui/scantablemodel.h
 
 FORMS += \
     mainwindow.ui

@@ -1,30 +1,31 @@
 #ifndef SCANNER_H
 #define SCANNER_H
-#include <QPair>
 #include <numeric>
-#include "util.h"
+#include <scanner/httpheaders.h>
+#include <scanner/util.h>
+#include <QCoreApplication>
+#include <QPair>
+#include <QThread>
 
 class Scanner
 {
-    int completions;
-    int memberSearchId;
-    bool stopped;
+    int completions, searchId;
+    HTTPHeaders headers;
+    bool paused, stopped;
+
+    void processRange(int total, QVector<QPair<IPAddress, ushort>> range, int maxConnections) {}
 public:
-    bool paused;
-
-    Scanner() {}
-
     void findProxies(const QStringList& rangeLines, const QStringList& portLines, int maxConnections)
     {
         completions = 0;
-        memberSearchId++;
+        searchId++;
         maxConnections *= 10;
         paused = stopped = false;
 
         QVector<ushort> ports = getAllPorts(portLines);
         QVector<QVector<IPAddress>> ranges = getAllRanges(rangeLines);
 
-        int total;
+        int total = 0;
         foreach (const QVector<IPAddress>& range, ranges)
             total += range.size();
         total *= ports.size();
@@ -38,10 +39,13 @@ public:
                     fullIps.append(QPair<IPAddress, ushort>(ip, port));
                 if (fullIps.size() > maxConnections * 25)
                 {
-                    // do funny here, i need to play minecraft
+                    processRange(total, fullIps, maxConnections);
+                    fullIps.clear();
                 }
             }
         }
+
+        processRange(total, fullIps, maxConnections);
     }
 };
 
