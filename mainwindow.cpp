@@ -1,38 +1,23 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <ui/scantablemodel.h>
+#include <QFileDialog>
 
 // TODO:
+// MainWindow: All button stuff (loading, searching, etc.)
 // Scanner: httpheaders.h, scanner.h
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->rangesText->setPlainText("- TEST IPS -\n37.192.0.0 - 37.195.255.255\n5.128.0.0 - 5.131.255.255\n80.64.86.0 - 80.64.87.255\n176.53.128.0 - 176.53.191.255\n178.49.0.0 - 178.49.255.255");
-    ui->countryText->setText("US");
-    ui->ddnsDrop->addItem("Troll HQ");
-    ui->networkText->setText("BLACKED: Exclusive Big Dick HD Erotica Porn Videos");
-    ui->portsText->setPlainText("80\n81\n8080\n25\n23\n8081");
-
+    // create table
     ScanTableModel* tableModel = new ScanTableModel(ui->tableView);
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
-    tableModel->append(ScanResult(true, "192.168.1.1", "test", 255));
     ui->tableView->setModel(tableModel);
+    ui->tableView->setColumnWidth(0, 25);
+    // set up buttons
+    connect(ui->playlistButton, SIGNAL(clicked()), this, SLOT(loadPlaylist()));
+    connect(ui->searchButton, SIGNAL(clicked()), this, SLOT(startSearch()));
 }
 
 MainWindow::~MainWindow()
@@ -40,3 +25,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::loadPlaylist()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose playlist file"), QString(), tr("m3u (*.m3u *.m3u8);;All files (*.*"));
+    ui->playlistText->setText(fileName);
+    ui->searchButton->setEnabled(true);
+}
+
+void MainWindow::startSearch()
+{
+    ui->pauseButton->setEnabled(true);
+    ui->saveButton->setEnabled(true);
+    ui->stopButton->setEnabled(true);
+    ui->connectSpin->setEnabled(false);
+    ui->playlistButton->setEnabled(false);
+    ui->playlistText->setEnabled(false);
+    ui->portsText->setEnabled(false);
+    ui->rangesText->setEnabled(false);
+    ui->searchButton->setEnabled(false);
+}

@@ -3,6 +3,7 @@
 #include <ui/scanresult.h>
 #include <QAbstractTableModel>
 #include <QList>
+#include <QStandardItem>
 
 class ScanTableModel : public QAbstractTableModel
 {
@@ -15,15 +16,60 @@ public:
 
     QVariant data(const QModelIndex& index, int role) const override
     {
-        if (role != Qt::DisplayRole && role != Qt::EditRole) return {};
+        if (!index.isValid())
+            return QVariant();
+
         const ScanResult& scanResult = m_data[index.row()];
-        switch (index.column())
+        switch (role)
         {
-            case 0: return scanResult.sel ? "Y" : "N";
-            case 1: return scanResult.ip;
-            case 2: return scanResult.port;
-            case 3: return scanResult.info;
-            default: return {};
+            case Qt::DisplayRole:
+                switch (index.column())
+                {
+                    case 1: return scanResult.ip;
+                    case 2: return scanResult.port;
+                    case 3: return scanResult.info;
+                    default: return QVariant();
+                }
+            case Qt::CheckStateRole:
+                if (index.column() == 0)
+                    return scanResult.sel ? Qt::Checked : Qt::Unchecked;
+                return QVariant();
+            default:
+                return QVariant();
+        }
+    }
+
+    bool setData(const QModelIndex& index, const QVariant& value, int role) override
+    {
+        if (!index.isValid())
+            return false;
+
+        ScanResult scanResult = m_data[index.row()];
+        switch (role)
+        {
+            case Qt::DisplayRole:
+                switch (index.column())
+                {
+                    case 1: scanResult.ip = value.toString(); break;
+                    case 2: scanResult.port = value.toInt(); break;
+                    case 3: scanResult.info = value.toString(); break;
+                    default: return false;
+                }
+
+                m_data.replace(index.row(), scanResult);
+                emit dataChanged(index, index);
+                return true;
+            case Qt::CheckStateRole:
+                if (index.column() == 0)
+                {
+                    scanResult.sel = (value.toInt() == Qt::Checked);
+                    m_data.replace(index.row(), scanResult);
+                    emit dataChanged(index, index);
+                    return true;
+                }
+                return false;
+            default:
+                return false;
         }
     }
 
@@ -38,6 +84,17 @@ public:
             case 3: return "Info";
             default: return {};
         }
+    }
+
+    Qt::ItemFlags flags(const QModelIndex& index) const override
+    {
+        if (!index.isValid())
+            return QAbstractTableModel::flags(index);
+
+        Qt::ItemFlags flags = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+        if (index.column() == 0)
+            flags |= Qt::ItemIsUserCheckable;
+        return flags;
     }
 
     void append(const ScanResult& scanResult)
