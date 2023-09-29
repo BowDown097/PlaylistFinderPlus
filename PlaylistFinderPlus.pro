@@ -6,30 +6,33 @@ CONFIG += c++20
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += $$PWD/src
+
 SOURCES += \
-    ddns/ddnsservice.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    model/ipaddress.cpp \
-    scanner/scanner.cpp \
-    scanner/util.cpp \
-    ui/scantablemodel.cpp
+    src/ddns/ddnsservice.cpp \
+    src/model/ipaddress.cpp \
+    src/playlistparser/playlistparser.cpp \
+    src/scanner/scanner.cpp \
+    src/scanner/util.cpp \
+    src/ui/scantablemodel.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp
 
 HEADERS += \
-    ddns/ddns.h \
-    ddns/ddnsservice.h \
-    mainwindow.h \
-    model/ipaddress.h \
-    model/ipportkey.h \
-    playlist/playlistparser.h \
-    scanner/httpheaders.h \
-    scanner/scanner.h \
-    scanner/util.h \
-    ui/scanresult.h \
-    ui/scantablemodel.h
+    src/ddns/ddns.h \
+    src/ddns/ddnsservice.h \
+    src/model/ipaddress.h \
+    src/playlistparser/parseresult.h \
+    src/playlistparser/playlistparser.h \
+    src/scanner/httpheaders.h \
+    src/scanner/ipportkey.h \
+    src/scanner/scanner.h \
+    src/scanner/util.h \
+    src/ui/scanresult.h \
+    src/ui/scantablemodel.h \
+    src/mainwindow.h
 
-FORMS += \
-    mainwindow.ui
+FORMS += src/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

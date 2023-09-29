@@ -4,10 +4,10 @@ IPAddress::IPAddress(const QString& ip)
 {
     QStringList split = ip.split('.');
 
-    QList<short> bits;
+    QList<ushort> bits;
     bits.reserve(split.size());
 
-    std::ranges::transform(split, std::back_inserter(bits), [](const QString& s) { return s.toShort(); });
+    std::ranges::transform(split, std::back_inserter(bits), [](const QString& s) { return s.toUShort(); });
 
     init(bits[0], bits[1], bits[2], bits[3]);
 }
