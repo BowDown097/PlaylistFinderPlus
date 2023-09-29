@@ -1,11 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <ui/scantablemodel.h>
+#include "ui/scantablemodel.h"
 #include <QFileDialog>
 
 // TODO:
 // MainWindow: All button stuff (loading, searching, etc.)
 // Scanner: httpheaders.h, scanner.h
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)

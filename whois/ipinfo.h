@@ -1,16 +1,17 @@
 #ifndef IPINFO_H
 #define IPINFO_H
-#include <QString>
-#include <QVector>
+#include <QStringList>
 
 class IPInfo
 {
 public:
-    QString country, mainRange, networkName;
-    QVector<QString> otherRanges;
+    QString country;
+    QString mainRange;
+    QString networkName;
+    QStringList otherRanges;
 
-    IPInfo(const QString& _country, const QString& _mainRange, const QString& _networkName, const QVector<QString>& _otherRanges) : country(_country),
-        mainRange(_mainRange), networkName(_networkName), otherRanges(_otherRanges) {}
+    IPInfo(const QString& country, const QString& mainRange, const QString& networkName, const QStringList& otherRanges)
+        : country(country), mainRange(mainRange), networkName(networkName), otherRanges(otherRanges) {}
 };
 
 #endif // IPINFO_H

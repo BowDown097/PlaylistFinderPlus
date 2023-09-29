@@ -1,7 +1,5 @@
-QT       += core gui network
-
+QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 CONFIG += c++20
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -10,7 +8,12 @@ CONFIG += c++20
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    model/ipaddress.cpp \
+    scanner/scanner.cpp \
+    scanner/util.cpp \
+    ui/scantablemodel.cpp \
+    whois/whois.cpp
 
 HEADERS += \
     mainwindow.h \

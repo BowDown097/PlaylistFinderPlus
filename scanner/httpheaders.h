@@ -1,6 +1,6 @@
 #ifndef HTTPHEADERS_H
 #define HTTPHEADERS_H
-#include <model/ipportkey.h>
+#include "model/ipportkey.h"
 #include <QMap>
 #include <QSet>
 

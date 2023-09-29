@@ -6,10 +6,12 @@ class ScanResult
 {
 public:
     bool sel;
-    QString ip, info;
+    QString info;
+    QString ip;
     ushort port;
 
-    ScanResult(bool _sel, const QString& _ip, const QString& _info, ushort _port) : sel(_sel), ip(_ip), info(_info), port(_port) {}
+    ScanResult(bool sel, const QString& ip, const QString& info, ushort port)
+        : sel(sel), info(info), ip(ip), port(port) {}
 };
 
 #endif // SCANRESULT_H
