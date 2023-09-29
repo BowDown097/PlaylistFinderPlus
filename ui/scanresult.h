@@ -2,9 +2,8 @@
 #define SCANRESULT_H
 #include <QString>
 
-class ScanResult
+struct ScanResult
 {
-public:
     bool sel;
     QString info;
     QString ip;

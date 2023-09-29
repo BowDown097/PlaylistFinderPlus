@@ -6,12 +6,13 @@
 
 class HTTPHeaders
 {
-    QMap<IPPortKey, QMap<QString, QSet<QString>>> cache;
 public:
     bool contains(const QString& ip, ushort port)
     {
         return cache.contains(IPPortKey(ip, port));
     }
+private:
+    QMap<IPPortKey, QMap<QString, QSet<QString>>> cache;
 };
 
 #endif // HTTPHEADERS_H

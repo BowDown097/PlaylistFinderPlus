@@ -12,8 +12,7 @@ SOURCES += \
     model/ipaddress.cpp \
     scanner/scanner.cpp \
     scanner/util.cpp \
-    ui/scantablemodel.cpp \
-    whois/whois.cpp
+    ui/scantablemodel.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -24,9 +23,7 @@ HEADERS += \
     scanner/scanner.h \
     scanner/util.h \
     ui/scanresult.h \
-    ui/scantablemodel.h \
-    whois/ipinfo.h \
-    whois/whois.h
+    ui/scantablemodel.h
 
 FORMS += \
     mainwindow.ui
