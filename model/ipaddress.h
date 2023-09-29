@@ -5,7 +5,7 @@
 class IPAddress
 {
 public:
-    IPAddress(short pos1, short pos2, short pos3, short pos4) { init(pos1, pos2, pos3, pos4); }
+    IPAddress(ushort pos1, ushort pos2, ushort pos3, ushort pos4) { init(pos1, pos2, pos3, pos4); }
     explicit IPAddress(const QString& ip);
 
     IPAddress next();
@@ -17,9 +17,9 @@ public:
     friend bool operator>(const IPAddress& l, const IPAddress& r) { return r < l; }
     friend bool operator<=(const IPAddress& l, const IPAddress& r) { return !(l > r); }
 private:
-    QList<short> position;
-    void addAtPosition(short index);
-    void init(short pos1, short pos2, short pos3, short pos4);
+    QList<ushort> position;
+    void addAtPosition(ushort index);
+    void init(ushort pos1, ushort pos2, ushort pos3, ushort pos4);
 };
 
 #endif // IPADDRESS_H

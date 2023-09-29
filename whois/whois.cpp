@@ -25,7 +25,7 @@ IPInfo Whois::getIpInfo(QNetworkAccessManager* manager, const QString& ip, ushor
 
     QNetworkReply* response = manager->post(request, data.toUtf8());
     QEventLoop event;
-    QObject::connect(response, SIGNAL(finished()), &event, SLOT(quit()));
+    QObject::connect(response, &QNetworkReply::finished, &event, &QEventLoop::quit);
     event.exec();
 
     // QString html = response->readAll();

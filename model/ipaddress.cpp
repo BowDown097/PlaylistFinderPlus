@@ -12,7 +12,7 @@ IPAddress::IPAddress(const QString& ip)
     init(vec[0], vec[1], vec[2], vec[3]);
 }
 
-void IPAddress::addAtPosition(short index)
+void IPAddress::addAtPosition(ushort index)
 {
     if (index == 0)
         return;
@@ -27,7 +27,7 @@ void IPAddress::addAtPosition(short index)
     addAtPosition(--index);
 }
 
-void IPAddress::init(short pos1, short pos2, short pos3, short pos4)
+void IPAddress::init(ushort pos1, ushort pos2, ushort pos3, ushort pos4)
 {
     position.append({pos1, pos2, pos3, pos4});
 }

@@ -7,7 +7,7 @@
 class ScanTableModel : public QAbstractTableModel
 {
 public:
-    explicit ScanTableModel(QObject* parent = nullptr) : QAbstractTableModel{parent} {}
+    explicit ScanTableModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
 
     int columnCount(const QModelIndex&) const override { return 4; }
     int rowCount(const QModelIndex&) const override { return m_data.count(); }

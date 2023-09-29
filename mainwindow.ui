@@ -2,426 +2,255 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>800</width>
-    <height>600</height>
-   </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>800</width>
-    <height>600</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>800</width>
-    <height>600</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string>Playlist Finder Plus v1.0.0</string>
+   <string>Playlist Finder Plus</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="playlistLabel">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>3</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Playlist</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="playlistText">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>1</y>
-      <width>700</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="playlistButton">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>1</y>
-      <width>20</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>...</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="ddnsLabel">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>36</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>DDNS</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="rangesLabel">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>70</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Ranges</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="ddnsDrop">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>35</y>
-      <width>250</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="countryLabel">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>36</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Country</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="countryText">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>35</y>
-      <width>40</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="networkLabel">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>36</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Network</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="networkText">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>35</y>
-      <width>270</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-    <property name="clearButtonEnabled">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="rangesText">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>70</y>
-      <width>300</width>
-      <height>140</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>550</y>
-      <width>700</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-   </widget>
-   <widget class="QLabel" name="progressLabel">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>550</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Progress</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="portsLabel">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>70</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Ports</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="portsText">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>70</y>
-      <width>175</width>
-      <height>140</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="connectLabel">
-    <property name="geometry">
-     <rect>
-      <x>605</x>
-      <y>70</y>
-      <width>90</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Connections</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="connectSpin">
-    <property name="geometry">
-     <rect>
-      <x>695</x>
-      <y>70</y>
-      <width>65</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>1</number>
-    </property>
-    <property name="maximum">
-     <number>999</number>
-    </property>
-    <property name="value">
-     <number>400</number>
-    </property>
-   </widget>
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>250</y>
-      <width>750</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <attribute name="horizontalHeaderStretchLastSection">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="verticalHeaderStretchLastSection">
-     <bool>true</bool>
-    </attribute>
-   </widget>
-   <widget class="QRadioButton" name="allIPs">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>460</y>
-      <width>90</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>All IPs</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="selectedIPs">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>460</y>
-      <width>120</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Selected IPs</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="saveButton">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>215</x>
-      <y>455</y>
-      <width>65</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Save...</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="searchButton">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>220</y>
-      <width>500</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start Search</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pauseButton">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>220</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pause</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="stopButton">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>220</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="playlistLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Playlist</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="12">
+     <widget class="QLineEdit" name="playlistText">
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="13">
+     <widget class="QPushButton" name="playlistButton">
+      <property name="text">
+       <string>...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="ddnsLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>DDNS</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="3">
+     <widget class="QComboBox" name="ddnsDrop"/>
+    </item>
+    <item row="1" column="4" colspan="2">
+     <widget class="QLabel" name="countryLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Country</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QLineEdit" name="countryText">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="7">
+     <widget class="QLabel" name="networkLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Network</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="8" colspan="5">
+     <widget class="QLineEdit" name="networkText">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="rangesLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Ranges</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" colspan="4">
+     <widget class="QPlainTextEdit" name="rangesText"/>
+    </item>
+    <item row="2" column="5" colspan="2">
+     <widget class="QLabel" name="portsLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Ports</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="7" colspan="3">
+     <widget class="QPlainTextEdit" name="portsText"/>
+    </item>
+    <item row="2" column="10">
+     <widget class="QLabel" name="connectLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Connections</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="11" colspan="2">
+     <widget class="QSpinBox" name="connectSpin">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>999</number>
+      </property>
+      <property name="value">
+       <number>400</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="9">
+     <widget class="QPushButton" name="searchButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Start Search</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="9">
+     <widget class="QPushButton" name="pauseButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Pause</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="10">
+     <widget class="QPushButton" name="stopButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="13">
+     <widget class="QTableView" name="tableView">
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+     </widget>
+    </item>
+    <item row="5" column="0" colspan="2">
+     <widget class="QRadioButton" name="allIPs">
+      <property name="text">
+       <string>All IPs</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QRadioButton" name="selectedIPs">
+      <property name="text">
+       <string>Selected IPs</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QPushButton" name="saveButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Save...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0" colspan="12">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="12" colspan="2">
+     <widget class="QLabel" name="progressLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Progress</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="sizePolicy">

@@ -7,9 +7,7 @@
 // MainWindow: All button stuff (loading, searching, etc.)
 // Scanner: httpheaders.h, scanner.h
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     // create table
@@ -17,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setModel(tableModel);
     ui->tableView->setColumnWidth(0, 25);
     // set up buttons
-    connect(ui->playlistButton, SIGNAL(clicked()), this, SLOT(loadPlaylist()));
-    connect(ui->searchButton, SIGNAL(clicked()), this, SLOT(startSearch()));
+    connect(ui->playlistButton, &QPushButton::clicked, this, &MainWindow::loadPlaylist);
+    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::startSearch);
 }
 
 MainWindow::~MainWindow()
@@ -28,7 +26,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::loadPlaylist()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose playlist file"), QString(), tr("m3u (*.m3u *.m3u8);;All files (*.*"));
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        "Choose playlist file",
+        QString(),
+        "m3u (*.m3u *.m3u8);;All files (*.*)"
+    );
     ui->playlistText->setText(fileName);
     ui->searchButton->setEnabled(true);
 }
