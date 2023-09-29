@@ -3,7 +3,6 @@
 #include <ui/scanresult.h>
 #include <QAbstractTableModel>
 #include <QList>
-#include <QStandardItem>
 
 class ScanTableModel : public QAbstractTableModel
 {
