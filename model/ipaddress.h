@@ -10,15 +10,18 @@ public:
 
     IPAddress next();
 
-    operator QString() const { return QString::asprintf("%hi%hi%hi%hi", position[0], position[1], position[2], position[3]); }
-    friend bool operator==(const IPAddress& l, const IPAddress& r) { return QString(l) == QString(r); }
+    operator QString() const;
+    friend bool operator==(const IPAddress& l, const IPAddress& r) { return l.positionAsString == r.positionAsString; }
     friend bool operator!=(const IPAddress& l, const IPAddress& r) { return !(l == r); }
-    friend bool operator<(const IPAddress& l, const IPAddress& r) { return QString(l).compare(QString(r)) < 0; }
+    friend bool operator<(const IPAddress& l, const IPAddress& r) { return l.positionAsString.compare(r.positionAsString) < 0; }
     friend bool operator>(const IPAddress& l, const IPAddress& r) { return r < l; }
     friend bool operator<=(const IPAddress& l, const IPAddress& r) { return !(l > r); }
 private:
     QList<ushort> position;
+    QString positionAsString;
+
     void addAtPosition(ushort index);
+    QString asString() const;
     void init(ushort pos1, ushort pos2, ushort pos3, ushort pos4);
 };
 

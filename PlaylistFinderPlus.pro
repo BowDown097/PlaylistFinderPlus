@@ -7,6 +7,7 @@ CONFIG += c++20
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ddns/ddnsservice.cpp \
     main.cpp \
     mainwindow.cpp \
     model/ipaddress.cpp \
@@ -15,6 +16,8 @@ SOURCES += \
     ui/scantablemodel.cpp
 
 HEADERS += \
+    ddns/ddns.h \
+    ddns/ddnsservice.h \
     mainwindow.h \
     model/ipaddress.h \
     model/ipportkey.h \
