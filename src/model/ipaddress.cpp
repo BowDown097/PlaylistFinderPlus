@@ -23,7 +23,7 @@ void IpAddress::addAtPosition(ushort index)
 
     if (index == 0)
         throw std::runtime_error("IP cannot be larger than 255.255.255.255");
-
+    
     position[index] = 0;
     addAtPosition(--index);
 }

@@ -22,10 +22,10 @@ ParseResult PlaylistParser::parsePlaylist(const QStringList& lines)
         return ParseResult();
 
     QStringList split = ipPortMatch.captured().split(':');
-    int port = 0;
+    ushort port = 0;
     bool parseSuccess = false;
     if (split.size() > 1)
-        port = split[1].toInt(&parseSuccess);
+        port = split[1].toUShort(&parseSuccess);
 
     QString join = lines.join('\n');
     QString host = parseSuccess ? QStringLiteral("%1:%2").arg(ipCapture).arg(port) : ipCapture;

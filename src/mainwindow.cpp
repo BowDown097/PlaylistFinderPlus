@@ -3,11 +3,11 @@
 #include "ui/scantablemodel.h"
 #include <QFileDialog>
 
-// TODO:
-// MainWindow: All button stuff (loading, searching, etc.)
-// Scanner: httpheaders.h, scanner.h
-
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), scanner(new Scanner(this)), ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget* parent)
+    : QMainWindow(parent),
+      scanner(new Scanner(this)),
+      ui(new Ui::MainWindow),
+      whoisClient(new WhoisClient(this))
 {
     ui->setupUi(this);
     // create table
@@ -43,6 +43,9 @@ void MainWindow::loadPlaylist()
     static QRegularExpression newlineRegex("[\r\n]+");
     QStringList lines = QString(playlistFile.readAll()).split(newlineRegex);
     ParseResult parseResult = playlistParser.parsePlaylist(lines);
+
+    IpInfo ipInfo = whoisClient->getIpInfo(parseResult.ip(), parseResult.port());
+    qDebug() << ipInfo.country() << ipInfo.mainRange() << ipInfo.networkName() << ipInfo.otherRanges();
 }
 
 void MainWindow::startSearch()

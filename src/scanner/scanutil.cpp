@@ -1,4 +1,4 @@
-#include "util.h"
+#include "scanutil.h"
 
 QList<ushort> getAllPorts(const QString& ports)
 {

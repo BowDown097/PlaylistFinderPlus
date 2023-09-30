@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "playlistparser/playlistparser.h"
 #include "scanner/scanner.h"
+#include "whois/whoisclient.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -23,5 +24,6 @@ private:
     PlaylistParser playlistParser;
     Scanner* scanner;
     Ui::MainWindow* ui;
+    WhoisClient* whoisClient;
 };
 #endif // MAINWINDOW_H

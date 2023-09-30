@@ -8,6 +8,8 @@ public:
     IpAddress(ushort pos1, ushort pos2, ushort pos3, ushort pos4) { init(pos1, pos2, pos3, pos4); }
     explicit IpAddress(const QString& ip);
 
+    QList<ushort> addressBytes() const { return position; }
+
     IpAddress next();
 
     operator QString() const;

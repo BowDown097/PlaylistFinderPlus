@@ -1,5 +1,5 @@
 #include "scanner.h"
-#include "util.h"
+#include "scanutil.h"
 #include <QtConcurrent>
 
 void Scanner::checkIp(const QString& ip, ushort port, int total)

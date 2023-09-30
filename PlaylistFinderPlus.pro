@@ -13,10 +13,12 @@ SOURCES += \
     src/playlistparser/playlistparser.cpp \
     src/scanner/httpheaders.cpp \
     src/scanner/scanner.cpp \
-    src/scanner/util.cpp \
+    src/scanner/scanutil.cpp \
     src/ui/scantablemodel.cpp \
     src/main.cpp \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/whois/whoisclient.cpp \
+    src/whois/whoisutil.cpp
 
 HEADERS += \
     src/model/ipaddress.h \
@@ -25,10 +27,15 @@ HEADERS += \
     src/scanner/httpheaders.h \
     src/scanner/ipportkey.h \
     src/scanner/scanner.h \
-    src/scanner/util.h \
+    src/scanner/scanutil.h \
     src/ui/scanresult.h \
     src/ui/scantablemodel.h \
-    src/mainwindow.h
+    src/mainwindow.h \
+    src/whois/ipinfo.h \
+    src/whois/range.h \
+    src/whois/whoisclient.h \
+    src/whois/whoisresult.h \
+    src/whois/whoisutil.h
 
 FORMS += src/mainwindow.ui
 
