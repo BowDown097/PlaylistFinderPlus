@@ -9,10 +9,7 @@ QList<Ddns> DdnsService::getDdnsList()
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return out;
 
-    QList<QString> lines;
-    while (file.canReadLine())
-        lines.append(file.readLine());
-
+    QStringList lines = QString(file.readAll()).split('\n');
     for (const QString& line : lines)
     {
         int ind = line.indexOf("=");

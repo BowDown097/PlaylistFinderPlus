@@ -9,7 +9,7 @@ class Scanner : public QObject
 {
     Q_OBJECT
 public:
-    Scanner() : m_networkManager(new QNetworkAccessManager(this)) {}
+    explicit Scanner(QObject* parent = nullptr) : QObject(parent), m_networkManager(new QNetworkAccessManager(this)) {}
 
     void findProxies(const QString& rangeLines, const QString& portLines, int maxConnections,
                      const std::function<QString(const QString&, int, const QString&)>& getChannelUrl);

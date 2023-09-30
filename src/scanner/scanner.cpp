@@ -87,7 +87,8 @@ QByteArray Scanner::getHttpData(const QString& ip, ushort port, const QString& u
 
 int Scanner::getNumberOfClients(const QString& statusData)
 {
-    QStringList split = statusData.split(QRegularExpression("[\r\n]+"), Qt::SkipEmptyParts);
+    static QRegularExpression newlineRegex("[\r\n]+");
+    QStringList split = statusData.split(newlineRegex, Qt::SkipEmptyParts);
     int num = 0;
     bool flag = false;
 
@@ -148,7 +149,8 @@ QString Scanner::getProxyType(const QString& ip, ushort port)
     }
     else if (statData.contains("Multicast to http proxy"))
     {
-        QStringList split = statData.split(QRegularExpression("[\r\n]+"), Qt::SkipEmptyParts);
+        static QRegularExpression newlineRegex("[\r\n]+");
+        QStringList split = statData.split(newlineRegex, Qt::SkipEmptyParts);
         auto splitIt = std::ranges::find_if(split, [](const QString& x) { return x.startsWith("Total clients count:"); });
         if (splitIt != split.end())
         {

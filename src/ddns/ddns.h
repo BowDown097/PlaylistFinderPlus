@@ -5,6 +5,7 @@
 class Ddns
 {
 public:
+    Ddns() = default;
     Ddns(const QString& name, const QString& url) : m_name(name), m_url(url) {}
 
     QString name() const { return m_name; }

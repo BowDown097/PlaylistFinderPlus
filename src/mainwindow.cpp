@@ -7,9 +7,13 @@
 // MainWindow: All button stuff (loading, searching, etc.)
 // Scanner: httpheaders.h, scanner.h
 
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), scanner(new Scanner(this)), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // set up members
+    ddnsList = ddnsService.getDdnsList();
+    if (!ddnsList.isEmpty())
+        selectedDdns = ddnsList.constFirst();
     // create table
     ScanTableModel* tableModel = new ScanTableModel(ui->tableView);
     ui->tableView->setModel(tableModel);
@@ -32,8 +36,24 @@ void MainWindow::loadPlaylist()
         QString(),
         "m3u (*.m3u *.m3u8);;All files (*.*)"
     );
+
     ui->playlistText->setText(fileName);
     ui->searchButton->setEnabled(true);
+
+    QFile playlistFile(fileName);
+    if (ddnsList.isEmpty() || !playlistFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QString baseName = QFileInfo(fileName).baseName();
+    auto ddnsIt = std::ranges::find_if(ddnsList, [&baseName](const Ddns& ddns) {
+        return baseName.startsWith(ddns.name(), Qt::CaseInsensitive);
+    });
+    if (ddnsIt != ddnsList.end())
+        selectedDdns = *ddnsIt;
+
+    static QRegularExpression newlineRegex("[\r\n]+");
+    QStringList lines = QString(playlistFile.readAll()).split(newlineRegex);
+    ParseResult parseResult = playlistParser.parsePlaylist(lines);
 }
 
 void MainWindow::startSearch()
