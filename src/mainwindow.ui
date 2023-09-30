@@ -2,55 +2,53 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Playlist Finder Plus</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="playlistLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Playlist</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1" colspan="12">
-     <widget class="QLineEdit" name="playlistText">
-      <property name="readOnly">
+    <item row="3" column="10">
+     <widget class="QPushButton" name="stopButton">
+      <property name="enabled">
        <bool>false</bool>
       </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
      </widget>
     </item>
-    <item row="0" column="13">
-     <widget class="QPushButton" name="playlistButton">
+    <item row="2" column="7" colspan="3">
+     <widget class="QPlainTextEdit" name="portsText"/>
+    </item>
+    <item row="3" column="9">
+     <widget class="QPushButton" name="pauseButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="text">
-       <string>...</string>
+       <string>Pause</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QRadioButton" name="allIPs">
+      <property name="text">
+       <string>All IPs</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QLabel" name="ddnsLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>DDNS</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1" colspan="3">
-     <widget class="QComboBox" name="ddnsDrop"/>
-    </item>
-    <item row="1" column="4" colspan="2">
      <widget class="QLabel" name="countryLabel">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -63,33 +61,14 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="6">
-     <widget class="QLineEdit" name="countryText">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="7">
-     <widget class="QLabel" name="networkLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+    <item row="5" column="1">
+     <widget class="QRadioButton" name="selectedIPs">
       <property name="text">
-       <string>Network</string>
+       <string>Selected IPs</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="8" colspan="5">
+    <item row="1" column="3">
      <widget class="QLineEdit" name="networkText">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -102,6 +81,84 @@
       </property>
       <property name="clearButtonEnabled">
        <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="10">
+     <widget class="QLabel" name="connectLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Connections</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QPushButton" name="saveButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Save...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5" colspan="2">
+     <widget class="QLabel" name="portsLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Ports</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="countryText">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="networkLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Network</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="playlistLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Playlist</string>
       </property>
      </widget>
     </item>
@@ -118,39 +175,24 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1" colspan="4">
-     <widget class="QPlainTextEdit" name="rangesText"/>
-    </item>
-    <item row="2" column="5" colspan="2">
-     <widget class="QLabel" name="portsLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+    <item row="3" column="0" colspan="9">
+     <widget class="QPushButton" name="searchButton">
+      <property name="enabled">
+       <bool>false</bool>
       </property>
       <property name="text">
-       <string>Ports</string>
+       <string>Start Search</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="7" colspan="3">
-     <widget class="QPlainTextEdit" name="portsText"/>
-    </item>
-    <item row="2" column="10">
-     <widget class="QLabel" name="connectLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+    <item row="0" column="11">
+     <widget class="QPushButton" name="playlistButton">
       <property name="text">
-       <string>Connections</string>
+       <string>...</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="11" colspan="2">
+    <item row="2" column="11">
      <widget class="QSpinBox" name="connectSpin">
       <property name="minimum">
        <number>1</number>
@@ -163,37 +205,14 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0" colspan="9">
-     <widget class="QPushButton" name="searchButton">
-      <property name="enabled">
+    <item row="0" column="1" colspan="10">
+     <widget class="QLineEdit" name="playlistText">
+      <property name="readOnly">
        <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Start Search</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="9">
-     <widget class="QPushButton" name="pauseButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Pause</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="10">
-     <widget class="QPushButton" name="stopButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Stop</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0" colspan="13">
+    <item row="4" column="0" colspan="12">
      <widget class="QTableView" name="tableView">
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
@@ -203,33 +222,6 @@
       </attribute>
      </widget>
     </item>
-    <item row="5" column="0" colspan="2">
-     <widget class="QRadioButton" name="allIPs">
-      <property name="text">
-       <string>All IPs</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QRadioButton" name="selectedIPs">
-      <property name="text">
-       <string>Selected IPs</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QPushButton" name="saveButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Save...</string>
-      </property>
-     </widget>
-    </item>
     <item row="6" column="0" colspan="12">
      <widget class="QProgressBar" name="progressBar">
       <property name="value">
@@ -237,18 +229,8 @@
       </property>
      </widget>
     </item>
-    <item row="6" column="12" colspan="2">
-     <widget class="QLabel" name="progressLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Progress</string>
-      </property>
-     </widget>
+    <item row="2" column="1" colspan="3">
+     <widget class="QPlainTextEdit" name="rangesText"/>
     </item>
    </layout>
   </widget>
