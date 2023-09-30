@@ -21,24 +21,18 @@ ParseResult PlaylistParser::parsePlaylist(const QStringList& lines)
     if (!ipPortMatch.hasMatch())
         return ParseResult();
 
-    QList<QString> split = ipPortMatch.captured().split(':');
+    QStringList split = ipPortMatch.captured().split(':');
     int port = 0;
     bool parseSuccess = false;
-    if (!split.isEmpty())
+    if (split.size() > 1)
         port = split[1].toInt(&parseSuccess);
 
     QString join = lines.join('\n');
+    QString host = parseSuccess ? QStringLiteral("%1:%2").arg(ipCapture).arg(port) : ipCapture;
+    QString hostMask = ipMask + ":" + portMask;
 
-    if (parseSuccess)
-    {
-        QString ipPort = QStringLiteral("%1:%2").arg(ipCapture).arg(port);
-        QString ipPortMask = ipMask + ":" + portMask;
-        join.replace(ipPort, ipPortMask);
-        firstLink.replace(ipPort, ipPortMask);
-    }
-
-    join.replace(ipCapture, ipMask);
-    firstLink.replace(ipCapture, ipMask);
+    join.replace(host, hostMask).replace(ipCapture, ipMask);
+    firstLink.replace(host, hostMask).replace(ipCapture, ipMask);
 
     return ParseResult(ipCapture, parseSuccess ? port : 80, join, firstLink);
 }

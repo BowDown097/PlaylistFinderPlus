@@ -27,7 +27,7 @@ QList<ushort> getAllPorts(const QString& ports)
     return out;
 }
 
-QList<IPAddress> getAllRanges(const QString& range)
+QList<IpAddress> getAllRanges(const QString& range)
 {
     if (range.contains('-'))
     {
@@ -38,12 +38,12 @@ QList<IPAddress> getAllRanges(const QString& range)
     return getRange(range, range);
 }
 
-QList<IPAddress> getRange(const QString& from, const QString& to)
+QList<IpAddress> getRange(const QString& from, const QString& to)
 {
-    IPAddress fromAddress(from.trimmed());
-    IPAddress toAddress(to.trimmed());
-
-    QList<IPAddress> range;
+    IpAddress fromAddress(from.trimmed());
+    IpAddress toAddress(to.trimmed());
+    
+    QList<IpAddress> range;
     do
     {
         range.append(fromAddress);

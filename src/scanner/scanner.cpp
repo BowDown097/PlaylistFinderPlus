@@ -36,21 +36,21 @@ void Scanner::findProxies(const QString& rangeLines, const QString& portLines, i
     for (const QString& portLine : portLines.split('\n', Qt::SkipEmptyParts))
         for (ushort port : getAllPorts(portLine))
             ports.insert(port);
-
-    QList<QList<IPAddress>> ranges;
+    
+    QList<QList<IpAddress>> ranges;
     for (const QString& rangeLine : rangeLines.split('\n', Qt::SkipEmptyParts))
         ranges.append(getAllRanges(rangeLine));
-
-    int total = std::accumulate(ranges.cbegin(), ranges.cend(), 0, [](int x, const QList<IPAddress>& y) {
+    
+    int total = std::accumulate(ranges.cbegin(), ranges.cend(), 0, [](int x, const QList<IpAddress>& y) {
         return x + y.size();
     }) * ports.size();
-
-    QList<QPair<IPAddress, ushort>> ipsPorts;
+    
+    QList<QPair<IpAddress, ushort>> ipsPorts;
     for (ushort port : ports)
     {
-        for (const QList<IPAddress>& range : ranges)
+        for (const QList<IpAddress>& range : ranges)
         {
-            for (const IPAddress& ip : range)
+            for (const IpAddress& ip : range)
                 ipsPorts.append(qMakePair(ip, port));
 
             if (ipsPorts.size() > maxConnections * 25)
@@ -158,7 +158,7 @@ QString Scanner::getProxyType(const QString& ip, ushort port)
             return QStringLiteral("msd (%1)").arg(totalClientsStr.toInt());
         }
     }
-    else if (statData.contains("nginx-rtmp-module"))
+    else if (statData.contains("nginx_rtmp_version"))
     {
         return "rtmp";
     }
@@ -179,6 +179,8 @@ QString Scanner::getProxyType(const QString& ip, ushort port)
             return "xProxy";
         else if (server.contains("UDPXY"))
             return "udpxy";
+        else if (server.contains("TRANSUDP"))
+            return "transudp";
         else if (server.contains("UDPPROXY"))
             return "udp-to-http";
         else if (server.contains("MULTICAST TO HTTP PROXY"))
@@ -187,16 +189,24 @@ QString Scanner::getProxyType(const QString& ip, ushort port)
             return "gws";
         else if (server.contains("MARTIN-VIDEO-PROXY"))
             return "martin";
+        else if (server.contains("TVHEADEND"))
+            return "tvheadend";
+        else if (server.contains("TSBOX"))
+            return "tsbox";
+        else if (server.contains("MUMUDVB"))
+            return "MuMuDVB";
     }
 
     if (m_headers.tryGetHeader(ip, port, "CONTENT-TYPE", contentType))
     {
         contentType = contentType.toUpper();
-        if (contentType.contains("VIDEO"))
+        if (contentType.contains("APPLICATION/VND.APPLE.MPEGURL"))
+            return "apple";
+        else if (contentType.contains("VIDEO"))
             return "+";
         else if (contentType.contains("STREAM"))
             return "-";
-        else if (contentType.contains("TEXT") || contentType.contains("HTML") || contentType.contains("XML"))
+        else if (contentType.contains("TEXT") || contentType.contains("HTML") || contentType.contains("XML") || contentType.contains("json"))
             return QString();
     }
 
@@ -214,10 +224,10 @@ QString Scanner::getProxyType(const QString& ip, ushort port)
     return QString();
 }
 
-void Scanner::processRange(int total, const QList<QPair<IPAddress, ushort>>& range, int maxConnections)
+void Scanner::processRange(int total, const QList<QPair<IpAddress, ushort>>& range, int maxConnections)
 {
     bool flag = false;
-    QList<QPair<IPAddress, ushort>>::const_iterator it = range.begin();
+    QList<QPair<IpAddress, ushort>>::const_iterator it = range.begin();
 
     QList<QFuture<void>> tasks;
     while (!m_stopped)

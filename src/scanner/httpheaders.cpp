@@ -1,14 +1,14 @@
 #include "httpheaders.h"
 
-void HTTPHeaders::add(const QString& ip, ushort port, const QList<QNetworkReply::RawHeaderPair>& headers)
+void HttpHeaders::add(const QString& ip, ushort port, const QList<QNetworkReply::RawHeaderPair>& headers)
 {
     if (!headers.isEmpty())
-        cache.insert(IPPortKey(ip, port), headers);
+        cache.insert(IpPortKey(ip, port), headers);
 }
 
-bool HTTPHeaders::tryGetHeader(const QString& ip, ushort port, const QString& header, QString& value) const
+bool HttpHeaders::tryGetHeader(const QString& ip, ushort port, const QString& header, QString& value) const
 {
-    IPPortKey ipPortKey(ip, port);
+    IpPortKey ipPortKey(ip, port);
     if (cache.contains(ipPortKey))
     {
         const QList<QNetworkReply::RawHeaderPair> pairList = cache[ipPortKey];

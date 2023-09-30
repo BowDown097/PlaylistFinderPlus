@@ -2,20 +2,20 @@
 #define IPADDRESS_H
 #include <QList>
 
-class IPAddress
+class IpAddress
 {
 public:
-    IPAddress(ushort pos1, ushort pos2, ushort pos3, ushort pos4) { init(pos1, pos2, pos3, pos4); }
-    explicit IPAddress(const QString& ip);
+    IpAddress(ushort pos1, ushort pos2, ushort pos3, ushort pos4) { init(pos1, pos2, pos3, pos4); }
+    explicit IpAddress(const QString& ip);
 
-    IPAddress next();
+    IpAddress next();
 
     operator QString() const;
-    friend bool operator==(const IPAddress& l, const IPAddress& r) { return l.positionAsString == r.positionAsString; }
-    friend bool operator!=(const IPAddress& l, const IPAddress& r) { return !(l == r); }
-    friend bool operator<(const IPAddress& l, const IPAddress& r) { return l.positionAsString.compare(r.positionAsString) < 0; }
-    friend bool operator>(const IPAddress& l, const IPAddress& r) { return r < l; }
-    friend bool operator<=(const IPAddress& l, const IPAddress& r) { return !(l > r); }
+    friend bool operator==(const IpAddress& l, const IpAddress& r) { return l.positionAsString == r.positionAsString; }
+    friend bool operator!=(const IpAddress& l, const IpAddress& r) { return !(l == r); }
+    friend bool operator<(const IpAddress& l, const IpAddress& r) { return l.positionAsString.compare(r.positionAsString) < 0; }
+    friend bool operator>(const IpAddress& l, const IpAddress& r) { return r < l; }
+    friend bool operator<=(const IpAddress& l, const IpAddress& r) { return !(l > r); }
 private:
     QList<ushort> position;
     QString positionAsString;

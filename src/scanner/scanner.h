@@ -21,7 +21,7 @@ public:
 private:
     int m_completions = 0;
     std::function<QString(const QString&, int, const QString&)> m_getChannelUrl;
-    HTTPHeaders m_headers;
+    HttpHeaders m_headers;
     QNetworkAccessManager* m_networkManager;
     bool m_paused = false;
     int m_searchId = 0;
@@ -31,7 +31,7 @@ private:
     QByteArray getHttpData(const QString& ip, ushort port, const QString& urlAddress, int byteCount);
     int getNumberOfClients(const QString& statusData);
     QString getProxyType(const QString& ip, ushort port);
-    void processRange(int total, const QList<QPair<IPAddress, ushort>>& range, int maxConnections);
+    void processRange(int total, const QList<QPair<IpAddress, ushort>>& range, int maxConnections);
     void setHttpHeaders(const QString& ip, ushort port, const QString& url);
 signals:
     void lastIpPort(const QString& ip, ushort port);

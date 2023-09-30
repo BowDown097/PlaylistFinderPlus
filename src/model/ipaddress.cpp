@@ -1,6 +1,6 @@
 #include "ipaddress.h"
 
-IPAddress::IPAddress(const QString& ip)
+IpAddress::IpAddress(const QString& ip)
 {
     QStringList split = ip.split('.');
 
@@ -12,7 +12,7 @@ IPAddress::IPAddress(const QString& ip)
     init(bits[0], bits[1], bits[2], bits[3]);
 }
 
-void IPAddress::addAtPosition(ushort index)
+void IpAddress::addAtPosition(ushort index)
 {
     if (position[index] != 255)
     {
@@ -28,25 +28,25 @@ void IPAddress::addAtPosition(ushort index)
     addAtPosition(--index);
 }
 
-QString IPAddress::asString() const
+QString IpAddress::asString() const
 {
     return QString::asprintf("%03hu%03hu%03hu%03hu", position[0], position[1], position[2], position[3]);
 }
 
-void IPAddress::init(ushort pos1, ushort pos2, ushort pos3, ushort pos4)
+void IpAddress::init(ushort pos1, ushort pos2, ushort pos3, ushort pos4)
 {
     position.append({pos1, pos2, pos3, pos4});
     positionAsString = asString();
 }
 
-IPAddress IPAddress::next()
+IpAddress IpAddress::next()
 {
-    IPAddress address(position[0], position[1], position[2], position[3]);
+    IpAddress address(position[0], position[1], position[2], position[3]);
     address.addAtPosition(3);
     return address;
 }
 
-IPAddress::operator QString() const
+IpAddress::operator QString() const
 {
     QStringList strings;
     strings.reserve(position.size());

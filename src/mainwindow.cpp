@@ -10,10 +10,6 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), scanner(new Scanner(this)), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    // set up members
-    ddnsList = ddnsService.getDdnsList();
-    if (!ddnsList.isEmpty())
-        selectedDdns = ddnsList.constFirst();
     // create table
     ScanTableModel* tableModel = new ScanTableModel(ui->tableView);
     ui->tableView->setModel(tableModel);
@@ -41,15 +37,8 @@ void MainWindow::loadPlaylist()
     ui->searchButton->setEnabled(true);
 
     QFile playlistFile(fileName);
-    if (ddnsList.isEmpty() || !playlistFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!playlistFile.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
-
-    QString baseName = QFileInfo(fileName).baseName();
-    auto ddnsIt = std::ranges::find_if(ddnsList, [&baseName](const Ddns& ddns) {
-        return baseName.startsWith(ddns.name(), Qt::CaseInsensitive);
-    });
-    if (ddnsIt != ddnsList.end())
-        selectedDdns = *ddnsIt;
 
     static QRegularExpression newlineRegex("[\r\n]+");
     QStringList lines = QString(playlistFile.readAll()).split(newlineRegex);

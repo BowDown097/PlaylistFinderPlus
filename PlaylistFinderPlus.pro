@@ -9,7 +9,6 @@ CONFIG += c++20
 INCLUDEPATH += $$PWD/src
 
 SOURCES += \
-    src/ddns/ddnsservice.cpp \
     src/model/ipaddress.cpp \
     src/playlistparser/playlistparser.cpp \
     src/scanner/httpheaders.cpp \
@@ -20,8 +19,6 @@ SOURCES += \
     src/mainwindow.cpp
 
 HEADERS += \
-    src/ddns/ddns.h \
-    src/ddns/ddnsservice.h \
     src/model/ipaddress.h \
     src/playlistparser/parseresult.h \
     src/playlistparser/playlistparser.h \
