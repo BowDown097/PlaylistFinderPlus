@@ -3,8 +3,8 @@
 #include "model/ipaddress.h"
 #include <QStringList>
 
-QList<ushort> getAllPorts(const QStringList& portLines);
-QList<QList<IPAddress>> getAllRanges(const QStringList& rangeLines);
+QList<ushort> getAllPorts(const QString& ports);
+QList<IPAddress> getAllRanges(const QString& range);
 QList<IPAddress> getRange(const QString& from, const QString& to);
 
 #endif // UTIL_H

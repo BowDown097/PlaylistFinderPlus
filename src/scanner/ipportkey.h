@@ -9,7 +9,7 @@ public:
     friend bool operator==(const IPPortKey& l, const IPPortKey& r) { return l.m_ip == r.m_ip && l.m_port == r.m_port; }
 
     QString ip() const { return m_ip; }
-    int port() const { return m_port; }
+    ushort port() const { return m_port; }
 private:
     QString m_ip;
     ushort m_port;

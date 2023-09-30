@@ -1,4 +1,4 @@
-QT += core gui network
+QT += concurrent core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++20
 
@@ -12,6 +12,7 @@ SOURCES += \
     src/ddns/ddnsservice.cpp \
     src/model/ipaddress.cpp \
     src/playlistparser/playlistparser.cpp \
+    src/scanner/httpheaders.cpp \
     src/scanner/scanner.cpp \
     src/scanner/util.cpp \
     src/ui/scantablemodel.cpp \
