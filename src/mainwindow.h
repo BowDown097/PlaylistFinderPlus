@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "playlistparser/playlistparser.h"
 #include "scanner/scanner.h"
+#include "ui/scantablemodel.h"
 #include "whois/whoisclient.h"
 #include <QMainWindow>
 
@@ -16,14 +17,23 @@ public:
     explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 private slots:
+    void addProxy(const QString& ip, ushort port, const QString& proxyType, const QString& server);
     void loadPlaylist();
+    void searchCompleted();
     void startSearch();
+    void updateLastIpPort(const QString& ip, ushort port);
+    void updateProgress(int completions, int total);
 private:
-    int maxConnections = 400;
-    int maxProxies = 1000;
+    QString lastIpPort;
+    QString maskedLine;
+    QString maskedPlaylist;
+
     PlaylistParser playlistParser;
+    ScanTableModel* tableModel;
     Scanner* scanner;
     Ui::MainWindow* ui;
     WhoisClient* whoisClient;
+
+    QString replaceIpAndPort(QString str, const QString& newIp, ushort newPort);
 };
 #endif // MAINWINDOW_H

@@ -59,6 +59,13 @@ QVariant ScanTableModel::headerData(int section, Qt::Orientation orientation, in
     }
 }
 
+void ScanTableModel::reset()
+{
+    beginResetModel();
+    m_data.clear();
+    endResetModel();
+}
+
 bool ScanTableModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     if (!index.isValid())

@@ -4,9 +4,9 @@
 
 void Scanner::checkIp(const QString& ip, ushort port, int total)
 {
-    std::unique_ptr<QSslSocket> socket = std::make_unique<QSslSocket>();
-    socket->connectToHostEncrypted(ip, port);
-    if (socket->waitForEncrypted(1000))
+    std::unique_ptr<QTcpSocket> socket = std::make_unique<QTcpSocket>();
+    socket->connectToHost(ip, port);
+    if (socket->waitForConnected(1000))
     {
         QString proxyType = getProxyType(ip, port);
         setHttpHeaders(ip, port, QStringLiteral("http://%1:%2").arg(ip).arg(port));
@@ -23,7 +23,7 @@ void Scanner::checkIp(const QString& ip, ushort port, int total)
 }
 
 void Scanner::findProxies(const QString& rangeLines, const QString& portLines, int maxConnections,
-                          const std::function<QString(const QString&, int, const QString&)>& getChannelUrl)
+                          std::function<QString(const QString&, ushort)> getChannelUrl)
 {
     m_completions = 0;
     m_searchId++;
@@ -69,11 +69,13 @@ QByteArray Scanner::getHttpData(const QString& ip, ushort port, const QString& u
     if (m_stopped)
         return QByteArray();
 
+    std::unique_ptr<QNetworkAccessManager> manager = std::make_unique<QNetworkAccessManager>();
+
     QNetworkRequest req((QUrl(urlAddress)));
     req.setRawHeader("User-Agent", "Mozilla");
     req.setTransferTimeout(5000);
 
-    QNetworkReply* reply = m_networkManager->get(req);
+    QNetworkReply* reply = manager->get(req);
 
     QEventLoop loop;
     QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
@@ -163,7 +165,7 @@ QString Scanner::getProxyType(const QString& ip, ushort port)
         return "rtmp";
     }
 
-    QString channelUrl = m_getChannelUrl(ip, port, QString());
+    QString channelUrl = m_getChannelUrl(ip, port);
     setHttpHeaders(ip, port, channelUrl);
 
     QString contentType, server;
@@ -264,11 +266,13 @@ void Scanner::setHttpHeaders(const QString& ip, ushort port, const QString& url)
     if (m_stopped || m_headers.contains(ip, port))
         return;
 
+    std::unique_ptr<QNetworkAccessManager> manager = std::make_unique<QNetworkAccessManager>();
+
     QNetworkRequest req((QUrl(url)));
     req.setRawHeader("User-Agent", "Mozilla");
     req.setTransferTimeout(5000);
 
-    QNetworkReply* reply = m_networkManager->get(req);
+    QNetworkReply* reply = manager->get(req);
 
     QEventLoop loop;
     connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);

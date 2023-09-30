@@ -6,6 +6,7 @@
 
 class ScanTableModel : public QAbstractTableModel
 {
+    Q_OBJECT
 public:
     explicit ScanTableModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
 
@@ -16,6 +17,7 @@ public:
     QVariant data(const QModelIndex& index, int role) const override;
     Qt::ItemFlags flags(const QModelIndex& index) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    void reset();
     bool setData(const QModelIndex& index, const QVariant& value, int role) override;
 private:
     QList<ScanResult> m_data;

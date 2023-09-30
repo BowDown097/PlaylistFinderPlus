@@ -9,10 +9,10 @@ class Scanner : public QObject
 {
     Q_OBJECT
 public:
-    explicit Scanner(QObject* parent = nullptr) : QObject(parent), m_networkManager(new QNetworkAccessManager(this)) {}
+    explicit Scanner(QObject* parent = nullptr) : QObject(parent) {}
 
     void findProxies(const QString& rangeLines, const QString& portLines, int maxConnections,
-                     const std::function<QString(const QString&, int, const QString&)>& getChannelUrl);
+                     std::function<QString(const QString&, ushort)> getChannelUrl);
 
     void pause() { m_paused = !m_paused; }
     bool paused() const { return m_paused; }
@@ -20,9 +20,8 @@ public:
     void stop() { m_stopped = true; }
 private:
     int m_completions = 0;
-    std::function<QString(const QString&, int, const QString&)> m_getChannelUrl;
+    std::function<QString(const QString&, ushort)> m_getChannelUrl;
     HttpHeaders m_headers;
-    QNetworkAccessManager* m_networkManager;
     bool m_paused = false;
     int m_searchId = 0;
     bool m_stopped = false;
