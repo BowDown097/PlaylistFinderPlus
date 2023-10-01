@@ -3,19 +3,16 @@
 #include "parseresult.h"
 #include <QRegularExpression>
 
-class PlaylistParser
+namespace PlaylistParser
 {
-public:
-    ParseResult parsePlaylist(const QStringList& lines);
+    static constexpr QLatin1StringView ipMask("$ip$");
+    static constexpr QLatin1StringView portMask("$port$");
 
-    QString ipPlaceholder() const { return ipMask; }
-    QString portPlaceholder() const { return portMask; }
-private:
-    const QString ipMask = "$ip$";
-    const QRegularExpression ipRegex = QRegularExpression("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b");
-    const QString portMask = "$port$";
-    const QRegularExpression portRegex = QRegularExpression("\\d{2,5}");
-    const QRegularExpression proxyIpRegex = QRegularExpression("://" + ipRegex.pattern());
-};
+    static inline const QRegularExpression ipRegex("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b");
+    static inline const QRegularExpression portRegex("\\d{2,5}");
+    static inline const QRegularExpression proxyIpRegex("://" + ipRegex.pattern());
+
+    ParseResult parsePlaylist(const QStringList& lines);
+}
 
 #endif // PLAYLISTPARSER_H

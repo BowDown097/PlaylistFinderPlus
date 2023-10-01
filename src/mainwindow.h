@@ -1,6 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "playlistparser/playlistparser.h"
 #include "scanner/scanner.h"
 #include "ui/scantablemodel.h"
 #include "whois/whoisclient.h"
@@ -32,7 +31,6 @@ private:
     QString maskedPlaylist;
     QString playlistPath;
 
-    PlaylistParser playlistParser;
     Scanner* scanner;
     ScanTableModel* tableModel;
     Ui::MainWindow* ui;

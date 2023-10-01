@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "playlistparser/playlistparser.h"
 #include <QFileDialog>
 #include <QThreadPool>
 
@@ -62,7 +63,7 @@ void MainWindow::loadPlaylist()
 
     static QRegularExpression newlineRegex("[\r\n]+");
     QStringList lines = QString(playlistFile.readAll()).split(newlineRegex);
-    ParseResult parseResult = playlistParser.parsePlaylist(lines);
+    ParseResult parseResult = PlaylistParser::parsePlaylist(lines);
 
     IpInfo ipInfo = whoisClient->getIpInfo(parseResult.ip(), parseResult.port());
 
@@ -145,8 +146,8 @@ void MainWindow::multipleSavePlaylist()
 QString MainWindow::replaceIpAndPort(QString str, const QString& newIp, ushort newPort)
 {
     return str
-        .replace(playlistParser.ipPlaceholder(), newIp)
-        .replace(playlistParser.portPlaceholder(), QString::number(newPort));
+        .replace(PlaylistParser::ipMask, newIp)
+        .replace(PlaylistParser::portMask, QString::number(newPort));
 }
 
 void MainWindow::searchCompleted()
