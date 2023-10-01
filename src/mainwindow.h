@@ -19,18 +19,22 @@ public:
 private slots:
     void addProxy(const QString& ip, ushort port, const QString& proxyType, const QString& server);
     void loadPlaylist();
+    void multipleSavePlaylist();
     void searchCompleted();
     void startSearch();
+    void stopSearch();
+    void togglePauseSearch();
     void updateLastIpPort(const QString& ip, ushort port);
     void updateProgress(int completions, int total);
 private:
     QString lastIpPort;
     QString maskedLine;
     QString maskedPlaylist;
+    QString playlistPath;
 
     PlaylistParser playlistParser;
-    ScanTableModel* tableModel;
     Scanner* scanner;
+    ScanTableModel* tableModel;
     Ui::MainWindow* ui;
     WhoisClient* whoisClient;
 

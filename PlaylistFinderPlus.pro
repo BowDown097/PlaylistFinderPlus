@@ -1,4 +1,4 @@
-QT += concurrent core gui network
+QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++20
 
@@ -13,6 +13,7 @@ SOURCES += \
     src/playlistparser/playlistparser.cpp \
     src/scanner/httpheaders.cpp \
     src/scanner/scanner.cpp \
+    src/scanner/scantask.cpp \
     src/scanner/scanutil.cpp \
     src/ui/scantablemodel.cpp \
     src/main.cpp \
@@ -27,7 +28,12 @@ HEADERS += \
     src/scanner/httpheaders.h \
     src/scanner/ipportkey.h \
     src/scanner/scanner.h \
+    src/scanner/scantask.h \
     src/scanner/scanutil.h \
+    src/task/controllabletask.h \
+    src/task/runcontrollabletask.h \
+    src/task/taskcontrol.h \
+    src/task/taskexecutor.h \
     src/ui/scanresult.h \
     src/ui/scantablemodel.h \
     src/mainwindow.h \

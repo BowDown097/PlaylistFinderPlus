@@ -18,6 +18,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex& index) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     void reset();
+    const ScanResult& result(int row) const { return m_data.at(row); }
     bool setData(const QModelIndex& index, const QVariant& value, int role) override;
 private:
     QList<ScanResult> m_data;
